@@ -1,4 +1,4 @@
-# OrderHome
+# Home Of Order
 Coordinate household responsibilities among multiple users
 
 This app aims to allow users that share a household to coordinate and assign various household tasks.
