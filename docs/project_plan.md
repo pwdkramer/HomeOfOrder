@@ -22,6 +22,14 @@ Define the MVP (Minimum viable product) for your project. Out of your list of fe
 
 For each of the features that are to be included in the MVP, create one or more User stories. You'll estimate these tasks as part of your first sprint, so you don't need to be too precise yet, but try to keep them small. Any story that will take more than a week should be broken into multiple smaller stories if possible. Follow the user stories guidelines discussed in lecture. To track these user stories we'll be using GitHub Issues. Create an Issue for each user story in your project. All group member must create at least one user story.
 
+- Account creation: As a member of a disorganized household, I want to be able to create an account and household, so that I can invite others in my home to have a coordination tool.
+
+- Task creation: As a user, I want to create a weekly list of chores, so that I can assign them to myself or others and know who is responsible for getting them done, and trust that they will be assigned regularly automatically.
+
+- Task completion: As a user, I want to be able to mark tasks as complete, so that others can check the list in the household instead of feeling the need to nag.
+  
+- Calendar sync: As a user, I want to be able to 
+
 ## 4
 
 Discuss the overall structure your project will have. It's a good idea to break the project into several files in order to simplify the process of multiple people contributing to the project.
