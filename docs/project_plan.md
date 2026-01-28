@@ -35,3 +35,5 @@ For each of the features that are to be included in the MVP, create one or more 
 Discuss the overall structure your project will have. It's a good idea to break the project into several files in order to simplify the process of multiple people contributing to the project.
 
 - I believe this project would be best suited as an interface to a relational database. I would have tables for users, households, tasks, and potentially tables for suggested tasks like common chores, or recipes to be used with meal planning.
+
+- I would need to design pages for users to view certain criteria of content (a chores page, a meal planning page, a household summary page) as well as methods for the user to add to lists or mark items complete.
