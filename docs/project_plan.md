@@ -28,8 +28,10 @@ For each of the features that are to be included in the MVP, create one or more 
 
 - Task completion: As a user, I want to be able to mark tasks as complete, so that others can check the list in the household instead of feeling the need to nag.
   
-- Calendar sync: As a user, I want to be able to 
+- Calendar sync: As a user, I want to export tasks and events to my primary calendar app, so that I can have information for my day in one location and not worry about always checking this app.
 
 ## 4
 
 Discuss the overall structure your project will have. It's a good idea to break the project into several files in order to simplify the process of multiple people contributing to the project.
+
+- I believe this project would be best suited as an interface to a relational database. I would have tables for users, households, tasks, and potentially tables for suggested tasks like common chores, or recipes to be used with meal planning.
