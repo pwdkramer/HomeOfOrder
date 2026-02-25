@@ -4,8 +4,10 @@ export type Task = {
     dueDate?: Date;
 };
 
-export function createTask(title: string): Task {
+export function createTask(title: string, assignedTo?: string, dueDate?: Date): Task {
     return {
         title,
+        assignedTo,
+        dueDate
     };
 }
