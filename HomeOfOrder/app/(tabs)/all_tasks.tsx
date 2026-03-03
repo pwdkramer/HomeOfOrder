@@ -35,8 +35,14 @@ export default function AllTasksScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20 },
-  title: { fontSize: 24, fontWeight: '600' },
+  container: {
+    flex: 1,
+    padding: 20
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: '600'
+  },
   fab: {
     position: 'absolute',
     bottom: 30,
@@ -49,9 +55,27 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     elevation: 5,
   },
-  fabText: { color: 'white', fontSize: 32, marginTop: -2 },
-  item: { padding: 12, borderRadius: 8, backgroundColor: '#fff', marginBottom: 10, elevation: 1 },
-  itemTitle: { fontSize: 16, fontWeight: '600' },
-  meta: { color: '#666', marginTop: 4 },
-  notes: { marginTop: 6, color: '#333' },
+  fabText: {
+    color: 'white',
+    fontSize: 32, marginTop: -2
+  },
+  item: {
+    padding: 12,
+    borderRadius: 8,
+    backgroundColor: '#fff',
+    marginBottom: 10,
+    elevation: 1
+  },
+  itemTitle: {
+    fontSize: 16,
+    fontWeight: '600'
+  },
+  meta: {
+    color: '#666',
+    marginTop: 4
+  },
+  notes: {
+    marginTop: 6,
+    color: '#333'
+  },
 });
