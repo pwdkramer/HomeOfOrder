@@ -14,12 +14,17 @@ export default function AllTasksScreen() {
         data={[...tasks].reverse()} // newest first
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <View style={styles.item}>
-            <Text style={styles.itemTitle}>{item.title}</Text>
-            {item.assignedTo ? <Text style={styles.meta}>Assigned: {item.assignedTo}</Text> : null}
-            {item.dueDate ? <Text style={styles.meta}>Due: {item.dueDate}</Text> : null}
-            {item.notes ? <Text style={styles.notes}>{item.notes}</Text> : null}
-          </View>
+          <Link
+            href={{ pathname: '/add-task', params: { id: item.id } }}
+            asChild
+          >
+            <TouchableOpacity style={styles.item}>
+              <Text style={styles.itemTitle}>{item.title}</Text>
+              {item.assignedTo ? <Text style={styles.meta}>Assigned: {item.assignedTo}</Text> : null}
+              {item.dueDate ? <Text style={styles.meta}>Due: {item.dueDate}</Text> : null}
+              {item.notes ? <Text style={styles.notes}>{item.notes}</Text> : null}
+            </TouchableOpacity>
+          </Link>
         )}
         contentContainerStyle={{ paddingTop: 12 }}
       />
