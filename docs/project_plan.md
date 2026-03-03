@@ -40,7 +40,4 @@ Discuss the overall structure your project will have. It's a good idea to break 
 
 TODO for mvp:
     (Get basic task list working for session)
-    - Edit tasks
-    - Mark tasks as complete
-    - Seperate pending and complete tasks
     - Delete tasks

@@ -1,32 +1,65 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, FlatList } from 'react-native';
-import { Link } from 'expo-router';
+import { Link, useRouter } from 'expo-router';
 import { useTasks } from '../../context/TasksContext';
 
 export default function AllTasksScreen() {
-  const { tasks } = useTasks();
+  const router = useRouter();
+  const { tasks, toggleTask } = useTasks();
+
+  const pending = tasks.filter((t) => !t.completed);
+  const completed = tasks.filter((t) => t.completed);
+
+  function renderItem(item: typeof tasks[0]) {
+    return (
+      <View style={styles.item}>
+        <TouchableOpacity
+          style={styles.checkbox}
+          onPress={() => toggleTask(item.id)}
+        >
+          <Text style={styles.checkText}>{item.completed ? '☑' : '☐'}</Text>
+        </TouchableOpacity>
+        <View style={styles.content}>
+          <Text
+            style={[
+              styles.itemTitle,
+              item.completed && styles.completedText,
+            ]}
+          >
+            {item.title}
+          </Text>
+          {item.assignedTo ? <Text style={styles.meta}>Assigned: {item.assignedTo}</Text> : null}
+          {item.dueDate ? <Text style={styles.meta}>Due: {item.dueDate}</Text> : null}
+          {item.notes ? <Text style={styles.notes}>{item.notes}</Text> : null}
+        </View>
+        <TouchableOpacity
+          style={styles.editButton}
+          onPress={() => router.push({ pathname: '/add-task', params: { id: item.id } })}
+        >
+          <Text style={styles.editText}>Edit</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>All Tasks</Text>
 
+      <Text style={styles.sectionTitle}>Pending</Text>
       <FlatList
-        data={[...tasks].reverse()} // newest first
+        data={[...pending].reverse()}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <Link
-            href={{ pathname: '/add-task', params: { id: item.id } }}
-            asChild
-          >
-            <TouchableOpacity style={styles.item}>
-              <Text style={styles.itemTitle}>{item.title}</Text>
-              {item.assignedTo ? <Text style={styles.meta}>Assigned: {item.assignedTo}</Text> : null}
-              {item.dueDate ? <Text style={styles.meta}>Due: {item.dueDate}</Text> : null}
-              {item.notes ? <Text style={styles.notes}>{item.notes}</Text> : null}
-            </TouchableOpacity>
-          </Link>
-        )}
-        contentContainerStyle={{ paddingTop: 12 }}
+        renderItem={({ item }) => renderItem(item)}
+        contentContainerStyle={{ paddingTop: 4 }}
+      />
+
+      <Text style={styles.sectionTitle}>Completed</Text>
+      <FlatList
+        data={[...completed].reverse()}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => renderItem(item)}
+        contentContainerStyle={{ paddingTop: 4, paddingBottom: 40 }}
       />
 
       {/* Floating Add Button */}
@@ -60,11 +93,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     elevation: 5,
   },
+  sectionTitle: {
+    marginTop: 12,
+    fontSize: 18,
+    fontWeight: '600',
+  },
   fabText: {
     color: 'white',
     fontSize: 32, marginTop: -2
   },
   item: {
+    flexDirection: 'row',
+    alignItems: 'center',
     padding: 12,
     borderRadius: 8,
     backgroundColor: '#fff',
@@ -74,6 +114,29 @@ const styles = StyleSheet.create({
   itemTitle: {
     fontSize: 16,
     fontWeight: '600'
+  },
+  content: {
+    flex: 1,
+  },
+  checkbox: {
+    marginRight: 8,
+  },
+  checkText: {
+    fontSize: 18,
+  },
+  editButton: {
+    padding: 6,
+    alignSelf: 'flex-start',
+    backgroundColor: '#007AFF',
+    borderRadius: 4,
+  },
+  editText: {
+    color: 'white',
+    fontSize: 14,
+  },
+  completedText: {
+    textDecorationLine: 'line-through',
+    color: '#999',
   },
   meta: {
     color: '#666',
