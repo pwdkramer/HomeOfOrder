@@ -1,11 +1,21 @@
 import { createContext, useContext, useState } from "react";
-import { Task, createTask } from "../lib/tasks";
+import { Task, createTask, updateTask as updateTaskHelper } from "../lib/tasks";
 
 type TasksContextType = {
   tasks: Task[];
   addTask: (
     title: string,
     opts?: { notes?: string; assignedTo?: string; dueDate?: string }
+  ) => void;
+  updateTask: (
+    id: string,
+    updates: Partial<{
+      title: string;
+      notes?: string;
+      assignedTo?: string;
+      dueDate?: string;
+      completed: boolean;
+    }>
   ) => void;
 };
 
@@ -22,8 +32,23 @@ export function TasksProvider({ children }: { children: React.ReactNode }) {
     setTasks((prev) => [...prev, newTask]);
   }
 
+  function updateTask(
+    id: string,
+    updates: Partial<{
+      title: string;
+      notes?: string;
+      assignedTo?: string;
+      dueDate?: string;
+      completed: boolean;
+    }>
+  ) {
+    setTasks((prev) =>
+      prev.map((t) => (t.id === id ? updateTaskHelper(t, updates) : t))
+    );
+  }
+
   return (
-    <TasksContext.Provider value={{ tasks, addTask }}>
+    <TasksContext.Provider value={{ tasks, addTask, updateTask }}>
       {children}
     </TasksContext.Provider>
   );
