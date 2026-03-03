@@ -37,3 +37,10 @@ Discuss the overall structure your project will have. It's a good idea to break 
 - I believe this project would be best suited as an interface to a relational database. I would have tables for users, households, tasks, and potentially tables for suggested tasks like common chores, or recipes to be used with meal planning.
 
 - I would need to design pages for users to view certain criteria of content (a chores page, a meal planning page, a household summary page) as well as methods for the user to add to lists or mark items complete.
+
+TODO for mvp:
+    (Get basic task list working for session)
+    - Edit tasks
+    - Mark tasks as complete
+    - Seperate pending and complete tasks
+    - Delete tasks
