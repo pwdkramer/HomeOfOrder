@@ -17,6 +17,7 @@ type TasksContextType = {
       completed: boolean;
     }>
   ) => void;
+  toggleTask: (id: string) => void;
 };
 
 const TasksContext = createContext<TasksContextType | null>(null);
@@ -47,8 +48,16 @@ export function TasksProvider({ children }: { children: React.ReactNode }) {
     );
   }
 
+  function toggleTask(id: string) {
+    setTasks((prev) =>
+      prev.map((t) =>
+        t.id === id ? { ...t, completed: !t.completed } : t
+      )
+    );
+  }
+
   return (
-    <TasksContext.Provider value={{ tasks, addTask, updateTask }}>
+    <TasksContext.Provider value={{ tasks, addTask, updateTask, toggleTask }}>
       {children}
     </TasksContext.Provider>
   );
