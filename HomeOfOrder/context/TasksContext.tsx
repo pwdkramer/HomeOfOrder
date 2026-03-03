@@ -3,7 +3,10 @@ import { Task, createTask } from "../lib/tasks";
 
 type TasksContextType = {
   tasks: Task[];
-  addTask: (title: string) => void;
+  addTask: (
+    title: string,
+    opts?: { notes?: string; assignedTo?: string; dueDate?: string }
+  ) => void;
 };
 
 const TasksContext = createContext<TasksContextType | null>(null);
@@ -11,8 +14,11 @@ const TasksContext = createContext<TasksContextType | null>(null);
 export function TasksProvider({ children }: { children: React.ReactNode }) {
   const [tasks, setTasks] = useState<Task[]>([]);
 
-  function addTask(title: string) {
-    const newTask = createTask(title);
+  function addTask(
+    title: string,
+    opts?: { notes?: string; assignedTo?: string; dueDate?: string }
+  ) {
+    const newTask = createTask(title, opts);
     setTasks((prev) => [...prev, newTask]);
   }
 
