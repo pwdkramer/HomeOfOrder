@@ -5,7 +5,7 @@ import { useTasks } from '../../context/TasksContext';
 
 export default function AllTasksScreen() {
   const router = useRouter();
-  const { tasks, toggleTask } = useTasks();
+  const { tasks, toggleTask, deleteTask } = useTasks();
 
   const pending = tasks.filter((t) => !t.completed);
   const completed = tasks.filter((t) => t.completed);
@@ -32,12 +32,20 @@ export default function AllTasksScreen() {
           {item.dueDate ? <Text style={styles.meta}>Due: {item.dueDate}</Text> : null}
           {item.notes ? <Text style={styles.notes}>{item.notes}</Text> : null}
         </View>
-        <TouchableOpacity
-          style={styles.editButton}
-          onPress={() => router.push({ pathname: '/add-task', params: { id: item.id } })}
-        >
-          <Text style={styles.editText}>Edit</Text>
-        </TouchableOpacity>
+        <View style={styles.actionGroup}>
+          <TouchableOpacity
+            style={styles.editButton}
+            onPress={() => router.push({ pathname: '/add-task', params: { id: item.id } })}
+          >
+            <Text style={styles.editText}>Edit</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.deleteButton}
+            onPress={() => deleteTask(item.id)}
+          >
+            <Text style={styles.deleteText}>Delete</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
@@ -131,6 +139,21 @@ const styles = StyleSheet.create({
     borderRadius: 4,
   },
   editText: {
+    color: 'white',
+    fontSize: 14,
+  },
+  actionGroup: {
+    flexDirection: 'column',
+    marginLeft: 8,
+  },
+  deleteButton: {
+    marginTop: 4,
+    padding: 6,
+    alignSelf: 'flex-start',
+    backgroundColor: '#FF3B30',
+    borderRadius: 4,
+  },
+  deleteText: {
     color: 'white',
     fontSize: 14,
   },
